@@ -1,0 +1,83 @@
+<Page
+    x:Class="Sabun.Views.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Grid
+        x:Name="ContentArea"
+        Margin="{StaticResource MediumLeftRightMargin}">
+
+        <Grid.RowDefinitions>
+            <RowDefinition x:Name="TitleRow" Height="48"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock
+            x:Name="TitlePage"
+            x:Uid="Main_Title"
+            Text="Navigation Item 2"
+            Style="{StaticResource PageTitleStyle}" />
+
+        <Button x:Name="refreshButton" HorizontalAlignment="Right" Click="refreshButton_Click">
+            <SymbolIcon Symbol="Refresh" ToolTipService.ToolTip="XV‚·‚é" />
+        </Button>
+
+        <Grid Grid.Row="1" AllowDrop="True" DragOver="Grid_DragOver" Drop="Grid_Drop">
+            <!-- Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}"--> 
+            <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
+                Place your content here.-->
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel x:Name="file1StackPanel" 
+                        Grid.Row="0" Grid.Column="0"
+                        Orientation="Horizontal" Margin="6">
+                <Button x:Name="openFile1Button" Click="openFile1Button_Click">
+                    <SymbolIcon Symbol="Folder" />
+                </Button>
+                <TextBlock Margin="6" Text="{Binding Path1}" />
+            </StackPanel>
+
+            <StackPanel x:Name="file2StackPanel" 
+                        Grid.Row="0" Grid.Column="1"
+                        Orientation="Horizontal" Margin="6">
+                <Button x:Name="openFile2Button" Click="openFile2Button_Click" >
+                    <SymbolIcon Symbol="Folder" />
+                </Button>
+                <TextBlock Margin="6" Text="{Binding Path2}" />
+            </StackPanel>
+
+            <WebView x:Name="webView1" Grid.Row="1" Grid.ColumnSpan="2">
+                
+            </WebView>
+        </Grid>
+        <!--  Adaptive triggers  -->
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="WindowStates">
+                <VisualState x:Name="WideState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="640"/>
+                    </VisualState.StateTriggers>
+                </VisualState>
+                <VisualState x:Name="NarrowState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="TitlePage.Margin" Value="48,0,12,7"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </Grid>
+</Page>
