@@ -78,10 +78,9 @@ namespace Sabun.Views
             filePicker.FileTypeFilter.Add(".txt");
 
             var file1 = await filePicker.PickSingleFileAsync();
-
+            if (file1 == null) return;
+            
             await SetFile1Async(file1);
-
-
             Refresh();
         }
 
@@ -115,8 +114,9 @@ namespace Sabun.Views
             filePicker.FileTypeFilter.Add(".txt");
 
             var file2 = await filePicker.PickSingleFileAsync();
-            await SetFile2Async(file2);
+            if (file2 == null) return;
 
+            await SetFile2Async(file2);
             Refresh();
         }
 
